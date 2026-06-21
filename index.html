@@ -275,8 +275,21 @@ body.hero-active .xhair{ opacity: 1; }
 .apt-row .apt-alias{ color:var(--muted); font-size:10px; }
 .apt-row .apt-status{ font-size:10px; letter-spacing:.12em; text-transform:uppercase; margin-top:2px; }
 .apt-row .apt-status.active{ color:var(--rust); }
+.apt-row .apt-status.complete{ color:var(--green); }
 .apt-row .apt-status.queued{ color:var(--muted); }
-.apt-row .apt-status.redacted{ color:var(--ink); background:var(--ink); border-radius:1px; display:inline-block; padding:0 4px; user-select:none; }
+
+/* edr grid */
+.edr-grid{
+  display:grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap:6px; margin-top:6px;
+}
+.edr-row{
+  border:1px solid var(--ink); padding:8px 10px;
+  font-family:var(--mono); font-size:10px; letter-spacing:.1em;
+  display:flex; flex-direction:column; gap:3px; background:var(--cream);
+}
+.edr-row .edr-name{ font-weight:500; color:var(--ink); text-transform:uppercase; letter-spacing:.14em; font-size:10px; }
+.edr-row .edr-technique{ color:var(--muted); font-size:9px; letter-spacing:.06em; }
+.edr-row .edr-status{ font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--green); }
 
 .killchain{ display:grid; grid-template-columns: repeat(12, 1fr); gap:4px; margin-top:6px; }
 .killchain .step{
@@ -299,15 +312,12 @@ body.hero-active .xhair{ opacity: 1; }
   background: var(--ink); color:var(--paper);
   display:flex; align-items:center; gap:14px; flex-wrap:wrap;
 }
-.c2-teaser .redacted-block{
-  background:var(--paper); color:var(--paper); padding:2px 8px;
-  font-size:12px; letter-spacing:.04em; user-select:none;
-  border:1px solid rgba(242,236,224,.3);
-  transition: background .3s ease, color .3s ease;
-  cursor:default;
-}
-.c2-teaser .redacted-block:hover{ background:transparent; color:var(--paper); }
 .c2-teaser .c2-label{ color:rgba(242,236,224,.55); text-transform:uppercase; letter-spacing:.18em; font-size:10px; }
+.c2-teaser .c2-channel{ display:inline-flex; align-items:center; gap:6px; padding:3px 8px; border:1px solid rgba(242,236,224,.3); font-size:10px; letter-spacing:.1em; }
+.c2-teaser .c2-channel .ch-dot{ width:5px; height:5px; border-radius:50%; display:inline-block; }
+.c2-teaser .c2-channel .ch-dot.primary{ background:var(--green-2); }
+.c2-teaser .c2-channel .ch-dot.secondary{ background:var(--warn); }
+.c2-teaser .c2-channel .ch-dot.tertiary{ background:var(--blue-2); }
 .c2-teaser .c2-desc{ color:rgba(242,236,224,.8); }
 
 .proj .links-row{ display:flex; gap:14px; margin-top:10px; padding-top:14px; border-top:1px dashed rgba(14,19,16,.3); font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; }
@@ -411,6 +421,7 @@ body.hero-active .xhair{ opacity: 1; }
   .proj-grid{ grid-template-columns: 1fr !important; }
   .proj.feature, .proj.span-full{ grid-column: 1; }
   .apt-roster{ grid-template-columns: 1fr 1fr; }
+  .edr-grid{ grid-template-columns: 1fr 1fr; }
 }
 
 /* threat feed */
@@ -509,7 +520,7 @@ body.hero-active .xhair{ opacity: 1; }
       </div>
 
       <aside class="hero-side reveal d5" aria-label="Personnel record">
-        <h3><span>Personnel record</span><span>REV. 03</span></h3>
+        <h3><span>Personnel record</span><span>REV. 04</span></h3>
         <div class="kv"><span class="k">File</span><span class="v">AT-0007 / SINGH, A.</span></div>
         <div class="kv"><span class="k">Interests</span><span class="v">Nation-state tradecraft, Threat Intelligence, Adversary Emulation</span></div>
         <div class="kv"><span class="k">Function</span><span class="v">Student Researcher</span></div>
@@ -532,20 +543,20 @@ body.hero-active .xhair{ opacity: 1; }
       <span>Detection Engineering</span><span class="dot"></span>
       <span class="it">specimens, carefully observed</span><span class="dot"></span>
       <span>APT29 / NOBELIUM</span><span class="dot"></span>
+      <span>7/7 EDRs Bypassed</span><span class="dot"></span>
       <span>APT28 / FANCY BEAR</span><span class="dot"></span>
       <span>EDR Evasion Research</span><span class="dot"></span>
-      <span>AiTM Phishing</span><span class="dot"></span>
-      <span>Browser-resident Defense</span><span class="dot"></span>
+      <span>Custom C2 Framework</span><span class="dot"></span>
       <span class="it">handled with care</span><span class="dot"></span>
       <span>Adversary Emulation</span><span class="dot"></span>
       <span>Threat Intelligence</span><span class="dot"></span>
       <span>Detection Engineering</span><span class="dot"></span>
       <span class="it">specimens, carefully observed</span><span class="dot"></span>
       <span>APT29 / NOBELIUM</span><span class="dot"></span>
+      <span>7/7 EDRs Bypassed</span><span class="dot"></span>
       <span>APT28 / FANCY BEAR</span><span class="dot"></span>
       <span>EDR Evasion Research</span><span class="dot"></span>
-      <span>AiTM Phishing</span><span class="dot"></span>
-      <span>Browser-resident Defense</span><span class="dot"></span>
+      <span>Custom C2 Framework</span><span class="dot"></span>
       <span class="it">handled with care</span><span class="dot"></span>
     </div>
   </div>
@@ -568,7 +579,7 @@ body.hero-active .xhair{ opacity: 1; }
         <div class="id">01 / 2026.SU</div>
         <div>
           <div class="org">Horizon3<span style="font-style:italic; color:var(--green)">.ai</span></div>
-          <div class="role-line">EDR Validation Intern <span class="badge soon">Incoming · Summer</span></div>
+          <div class="role-line">EDR Validation Intern <span class="badge now">Active</span></div>
         </div>
         <div class="blurb">Offensive security and adversarial AI — validating endpoint defenses against autonomous attack techniques at NodeZero scale.</div>
         <div class="when">Summer 2026 <span class="loc">San Francisco, CA</span></div>
@@ -647,33 +658,33 @@ body.hero-active .xhair{ opacity: 1; }
 
     <div class="proj-grid">
 
-      <!-- FEATURED: Adversary Emulation Program -->
+      <!-- FEATURED: Adversary Emulation Program — APT29 COMPLETE -->
       <article class="proj feature reveal">
         <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
 
         <div class="proj-meta">
           <span><span class="code">OP-001</span> · Adversary Emulation Program</span>
-          <span class="stat rust"><span class="pulse"></span>In Progress · APT29 Phase 1</span>
+          <span class="stat"><span class="pulse"></span>APT29 Complete · 7/7 EDRs</span>
         </div>
 
-        <h3>APT <span class="it-rust">Emulation</span> Program</h3>
+        <h3>APT <span class="it">Emulation</span> Program</h3>
 
-        <p class="summary">A research project reconstructing nation-state TTPs into functional tooling — built from primary-source threat intelligence reports, not ATT&CK generics. Each emulation takes a named campaign, extracts the actual behavioral patterns documented by Mandiant, MSTIC, CrowdStrike, and FireEye, then re-implements them as working tools engineered to evade 2026 enterprise defenses.</p>
+        <p class="summary">A research program reconstructing nation-state TTPs into functional offensive tooling — built from primary-source threat intelligence by Mandiant, MSTIC, CrowdStrike, LAB52, and FireEye. Each emulation takes a named campaign, reverse-engineers the actual behavioral patterns documented in the report, then re-implements them as working tools engineered to evade current enterprise defenses.</p>
 
-        <p class="summary" style="margin-top:8px;">APT29/NOBELIUM is the first active emulation. Custom tooling written in C, Python, and PowerShell — EnvyScout HTML smuggler, evasive loader (Hell's Gate indirect syscalls, Ekko sleep masking, call stack spoofing), and a POSHSPY WMI backdoor. Tested against Elastic EDR 9.3 in full block/prevent mode and Windows Defender.</p>
+        <p class="summary" style="margin-top:8px;">APT29 / Cozy Bear is the first completed emulation. A fully custom C2 framework and implant written from scratch in C, Python, and x86-64 assembly — no Cobalt Strike, no Brute Ratel, no Sliver. The implant architecture is inspired by LAB52's analysis of EasterBunny, APT29's Stage 3 implant from a 2019 SVR operation: matryoshka-style encrypted payload nesting, PEB-walk API resolution via gs:[0x60], machine-bound decryption keys, and a reflective PIC loader. Tested and validated against 7 enterprise EDR products with stable beacons and command execution confirmed on each.</p>
 
         <div style="margin-top:12px;">
           <div style="font-family:var(--mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">APT Roster</div>
           <div class="apt-roster">
-            <div class="apt-row">
-              <span class="apt-name">APT29</span>
-              <span class="apt-alias">Cozy Bear / NOBELIUM</span>
-              <span class="apt-status active">● In Progress</span>
+            <div class="apt-row" style="background:var(--ink); color:var(--paper);">
+              <span class="apt-name" style="color:var(--paper);">APT29</span>
+              <span class="apt-alias" style="color:rgba(242,236,224,.6);">Cozy Bear / NOBELIUM</span>
+              <span class="apt-status complete">● Complete — 7/7 EDRs</span>
             </div>
             <div class="apt-row">
               <span class="apt-name">APT28</span>
               <span class="apt-alias">Fancy Bear / SOFACY</span>
-              <span class="apt-status queued">○ Queued</span>
+              <span class="apt-status active">● Next</span>
             </div>
             <div class="apt-row">
               <span class="apt-name">Turla</span>
@@ -693,37 +704,83 @@ body.hero-active .xhair{ opacity: 1; }
           </div>
         </div>
 
-        <div class="killchain" aria-label="APT29 kill chain phases">
-          <div class="step" style="--fill: 90%"><span class="n">01</span>Init Access</div>
-          <div class="step" style="--fill: 88%"><span class="n">02</span>C2 Setup</div>
-          <div class="step" style="--fill: 82%"><span class="n">03</span>Discovery</div>
-          <div class="step" style="--fill: 78%"><span class="n">04</span>UAC Bypass</div>
-          <div class="step" style="--fill: 84%"><span class="n">05</span>Priv Esc</div>
-          <div class="step" style="--fill: 76%"><span class="n">06</span>Cred Access</div>
-          <div class="step" style="--fill: 88%"><span class="n">07</span>Def Evasion</div>
-          <div class="step" style="--fill: 80%"><span class="n">08</span>Persistence</div>
-          <div class="step pending" style="--fill: 20%"><span class="n">09</span>Lat Move</div>
-          <div class="step pending" style="--fill: 20%"><span class="n">10</span>Dom Priv Esc</div>
-          <div class="step pending" style="--fill: 20%"><span class="n">11</span>Dom Persist</div>
-          <div class="step pending" style="--fill: 20%"><span class="n">12</span>Cleanup</div>
+        <!-- EDR bypass results -->
+        <div style="margin-top:12px;">
+          <div style="font-family:var(--mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">EDR Bypass Results — APT29 Implant</div>
+          <div class="edr-grid">
+            <div class="edr-row">
+              <span class="edr-name">CrowdStrike Falcon</span>
+              <span class="edr-technique">InstallUtil + csc.exe compile-on-target</span>
+              <span class="edr-status">● Bypassed</span>
+            </div>
+            <div class="edr-row">
+              <span class="edr-name">SentinelOne</span>
+              <span class="edr-technique">MSBuild v3 section mapping</span>
+              <span class="edr-status">● Bypassed</span>
+            </div>
+            <div class="edr-row">
+              <span class="edr-name">Cortex XDR</span>
+              <span class="edr-technique">MSBuild v3 section mapping</span>
+              <span class="edr-status">● Bypassed</span>
+            </div>
+            <div class="edr-row">
+              <span class="edr-name">Microsoft Defender</span>
+              <span class="edr-technique">Matryoshka zero-IAT loader</span>
+              <span class="edr-status">● Bypassed</span>
+            </div>
+            <div class="edr-row">
+              <span class="edr-name">Bitdefender</span>
+              <span class="edr-technique">Matryoshka zero-IAT loader</span>
+              <span class="edr-status">● Bypassed</span>
+            </div>
+            <div class="edr-row">
+              <span class="edr-name">Sophos</span>
+              <span class="edr-technique">RDLL + XOR strings + IAT cleanup</span>
+              <span class="edr-status">● Bypassed</span>
+            </div>
+            <div class="edr-row">
+              <span class="edr-name">Elastic Security</span>
+              <span class="edr-technique">RDLL + XOR strings + IAT cleanup</span>
+              <span class="edr-status">● Bypassed</span>
+            </div>
+          </div>
         </div>
 
+        <div class="killchain" aria-label="APT29 kill chain phases — all complete">
+          <div class="step" style="--fill: 95%"><span class="n">01</span>Init Access</div>
+          <div class="step" style="--fill: 95%"><span class="n">02</span>C2 Setup</div>
+          <div class="step" style="--fill: 90%"><span class="n">03</span>Discovery</div>
+          <div class="step" style="--fill: 85%"><span class="n">04</span>UAC Bypass</div>
+          <div class="step" style="--fill: 90%"><span class="n">05</span>Priv Esc</div>
+          <div class="step" style="--fill: 85%"><span class="n">06</span>Cred Access</div>
+          <div class="step" style="--fill: 95%"><span class="n">07</span>Def Evasion</div>
+          <div class="step" style="--fill: 90%"><span class="n">08</span>Persistence</div>
+          <div class="step" style="--fill: 75%"><span class="n">09</span>Lat Move</div>
+          <div class="step" style="--fill: 75%"><span class="n">10</span>Dom Priv Esc</div>
+          <div class="step" style="--fill: 75%"><span class="n">11</span>Dom Persist</div>
+          <div class="step" style="--fill: 80%"><span class="n">12</span>Cleanup</div>
+        </div>
+
+        <!-- C2 framework — un-redacted -->
         <div class="c2-teaser">
-          <span class="c2-label">Also building →</span>
-          <span class="redacted-block">CLASSIFIED</span>
-          <span class="c2-desc">C2 framework with runtime TTP switching — behavioral profiles for each Bear. Hover to un-redact.</span>
+          <span class="c2-label">C2 Framework →</span>
+          <span class="c2-channel"><span class="ch-dot primary"></span>HTTPS Domain-Fronted</span>
+          <span class="c2-channel"><span class="ch-dot secondary"></span>HAMMERTOSS</span>
+          <span class="c2-channel"><span class="ch-dot tertiary"></span>POSHSPY WMI</span>
+          <span class="c2-desc">Custom teamserver · 3 independent C2 channels · Burn one, two survive</span>
         </div>
 
         <div class="tags">
-          <span>C / Win32</span><span>Indirect Syscalls</span><span>Ekko Sleep Mask</span>
-          <span>Stack Spoofing</span><span>HTML Smuggling</span><span>WMI Backdoor</span>
-          <span>Python</span><span>PowerShell</span><span>Threat Intel</span>
+          <span>C / Win32</span><span>x86-64 ASM</span><span>Indirect Syscalls</span><span>Ekko Sleep Mask</span>
+          <span>Stack Spoofing</span><span>Module Stomping</span><span>Section Mapping</span><span>RDLL</span>
+          <span>Domain Fronting</span><span>HAMMERTOSS</span><span>WMI Backdoor</span>
+          <span>PEB Walk</span><span>Python</span><span>Threat Intel</span>
         </div>
 
         <div class="stats">
-          <div><span class="k">EDR Detections</span><span class="v green">00</span></div>
-          <div><span class="k">APTs Queued</span><span class="v">06</span></div>
-          <div><span class="k">Tools Authored</span><span class="v rust">07+</span></div>
+          <div><span class="k">EDRs Bypassed</span><span class="v green">7/7</span></div>
+          <div><span class="k">C2 Channels</span><span class="v">03</span></div>
+          <div><span class="k">APTs Queued</span><span class="v rust">05</span></div>
         </div>
 
         <div class="links-row">
@@ -1035,6 +1092,7 @@ body.hero-active .xhair{ opacity: 1; }
           <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">Cobalt Strike</span><span style="color:var(--sub);">·</span>
           <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">Sliver C2</span><span style="color:var(--sub);">·</span>
           <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">Havoc C2</span><span style="color:var(--sub);">·</span>
+          <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">Custom C2 (5ears)</span><span style="color:var(--sub);">·</span>
           <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">Evilginx</span><span style="color:var(--sub);">·</span>
           <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">Crystal Kit (post-ex)</span><span style="color:var(--sub);">·</span>
           <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">Phishing Kit RE</span><span style="color:var(--sub);">·</span>
@@ -1051,6 +1109,8 @@ body.hero-active .xhair{ opacity: 1; }
           <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">Elastic EDR</span><span style="color:var(--sub);">·</span>
           <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">CrowdStrike Falcon</span><span style="color:var(--sub);">·</span>
           <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">Microsoft Defender</span><span style="color:var(--sub);">·</span>
+          <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">SentinelOne</span><span style="color:var(--sub);">·</span>
+          <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">Cortex XDR</span><span style="color:var(--sub);">·</span>
           <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">IBM QRadar</span><span style="color:var(--sub);">·</span>
           <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">Google Chronicle</span><span style="color:var(--sub);">·</span>
           <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">ELK Stack</span><span style="color:var(--sub);">·</span>
@@ -1064,7 +1124,9 @@ body.hero-active .xhair{ opacity: 1; }
         </div>
         <div style="padding:16px 20px; display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
           <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">C / C++</span><span style="color:var(--sub);">·</span>
+          <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">x86-64 Assembly</span><span style="color:var(--sub);">·</span>
           <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">Python</span><span style="color:var(--sub);">·</span>
+          <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">C#</span><span style="color:var(--sub);">·</span>
           <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">PowerShell</span><span style="color:var(--sub);">·</span>
           <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">Go</span><span style="color:var(--sub);">·</span>
           <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">JavaScript</span><span style="color:var(--sub);">·</span>
@@ -1098,6 +1160,7 @@ body.hero-active .xhair{ opacity: 1; }
           <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">Active Directory</span><span style="color:var(--sub);">·</span>
           <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">VMware ESXi / vSphere</span><span style="color:var(--sub);">·</span>
           <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">AWS</span><span style="color:var(--sub);">·</span>
+          <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">Cloudflare</span><span style="color:var(--sub);">·</span>
           <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">Terraform</span><span style="color:var(--sub);">·</span>
           <span style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;">Supabase</span>
         </div>
@@ -1154,7 +1217,7 @@ body.hero-active .xhair{ opacity: 1; }
     <div class="footer-bar">
       <div class="left">
         <span>© 2026 · A. SINGH</span>
-        <span>File AT-0007 · Rev. 03</span>
+        <span>File AT-0007 · Rev. 04</span>
       </div>
       <div class="barcode" aria-hidden="true" id="barcode"></div>
       <div style="font-family:var(--mono); font-size:10px; letter-spacing:.16em; color:rgba(242,236,224,.4)">github.com/61tiger</div>
@@ -1311,8 +1374,6 @@ tickClock(); setInterval(tickClock, 1000);
     }
   }
 
-  function dist(a,b){ return Math.hypot(a.x-b,a.y-mouse.y); }
-
   let frame=0;
   function draw(){
     if(!running){ return; }
@@ -1320,7 +1381,6 @@ tickClock(); setInterval(tickClock, 1000);
     ctx.clearRect(0,0,W,H);
     frame++;
 
-    // subtle scanlines
     for(let y=0;y<H;y+=3){
       ctx.fillStyle=`rgba(14,19,16,0.012)`;
       ctx.fillRect(0,y,W,1);
@@ -1331,7 +1391,6 @@ tickClock(); setInterval(tickClock, 1000);
       const dx = Math.sin(cell.drift)*0.3;
       const dy = Math.cos(cell.drift*0.7)*0.3;
 
-      // proximity to mouse
       const d = Math.hypot(cell.x - mouse.x, cell.y - mouse.y);
       const radius = 110;
       const inRange = d < radius;
@@ -1339,19 +1398,15 @@ tickClock(); setInterval(tickClock, 1000);
       if(inRange && !cell.lit){
         cell.lit = true;
         cell.litTimer = 60 + Math.random()*40|0;
-        // maybe mark sorted
         if(Math.random()<0.35){ cell.sorted=true; cell.sortTimer=90+Math.random()*60|0; }
-        // change digit occasionally
         if(Math.random()<0.5) cell.val=(Math.random()*9|0).toString();
       }
       if(cell.litTimer>0){ cell.litTimer--; } else { cell.lit=false; }
       if(cell.sortTimer>0){ cell.sortTimer--; } else { cell.sorted=false; }
 
-      // opacity lerp
       cell.targetOp = cell.lit ? (0.55 + Math.random()*0.25) : (0.06 + Math.random()*0.04);
       cell.opacity += (cell.targetOp - cell.opacity)*0.06;
 
-      // change value slowly
       cell.changeTimer--;
       if(cell.changeTimer<=0){
         cell.val=(Math.random()*9|0).toString();
@@ -1365,7 +1420,6 @@ tickClock(); setInterval(tickClock, 1000);
       ctx.globalAlpha = cell.opacity;
 
       if(cell.sorted){
-        // sorted cells get a faint box + green tint
         ctx.strokeStyle=GREEN+'0.35)';
         ctx.lineWidth=0.5;
         ctx.strokeRect(px - cell.cw*0.38, py - cell.ch*0.38, cell.cw*0.76, cell.ch*0.76);
@@ -1384,7 +1438,6 @@ tickClock(); setInterval(tickClock, 1000);
       ctx.fillText(cell.val, px, py);
       ctx.restore();
 
-      // faint grid lines between cells
       if(frame%4===0 && inRange){
         ctx.save();
         ctx.globalAlpha=0.06;
@@ -1395,7 +1448,6 @@ tickClock(); setInterval(tickClock, 1000);
       }
     });
 
-    // draw subtle connection lines between nearby lit cells
     const lit = cells.filter(c=>c.lit);
     for(let i=0;i<lit.length;i++) for(let j=i+1;j<lit.length;j++){
       const d=Math.hypot(lit[i].x-lit[j].x, lit[i].y-lit[j].y);
@@ -1413,7 +1465,6 @@ tickClock(); setInterval(tickClock, 1000);
     }
   }
 
-  // mouse tracking on hero only
   hero.addEventListener('pointermove', e=>{
     const r=canvas.getBoundingClientRect();
     mouse.x=e.clientX-r.left;
@@ -1421,7 +1472,6 @@ tickClock(); setInterval(tickClock, 1000);
   });
   hero.addEventListener('pointerleave',()=>{ mouse.x=-9999; mouse.y=-9999; });
 
-  // pause when offscreen
   const io = new IntersectionObserver(entries=>{
     running=entries[0].isIntersecting;
     if(running && !raf) draw();
@@ -1442,11 +1492,11 @@ tickClock(); setInterval(tickClock, 1000);
   if(!container) return;
 
   const events = [
-    {type:'BEACON', cls:'beacon',  msgs:['APT29 · C2 checkin · polar.local','NOBELIUM · Havoc implant active','EnvyScout · ISO mounted on VICTIM01','Beacon sleep: 42min jitter 25%','C2 profile: application/json · port 443']},
+    {type:'BEACON', cls:'beacon',  msgs:['APT29 · C2 checkin · polar.local','NOBELIUM · implant active · 7/7 EDRs','EnvyScout · ISO mounted on VICTIM01','Beacon sleep: 42min jitter 25%','C2 profile: application/json · port 443','CrowdStrike Falcon · beacon established','SentinelOne · section mapping active','Cortex XDR · dual-view RX active']},
     {type:'ALERT',  cls:'alert',   msgs:['Indirect syscall detected · NtAllocateVirtualMemory','RWX → RX flip via syscall','LSASS read attempt · PPL protected','auditpol.exe · subcategory disabled','Scheduled task created · SoftwareProtectionPlatform']},
-    {type:'SORTED', cls:'sorted',  msgs:['Phase 03 · Discovery complete','Phase 05 · DLL sideload success','Phase 08 · WMI persistence planted','POSHSPY filter: BfeOnServiceStartTypeChange','Phase 02 · C2 profile loaded']},
-    {type:'EVASION',cls:'evasion', msgs:['Sleep mask · RC4 encrypt in-memory','Stack spoof · dfshim.dll gadget','MAC blocklist · VMware OUI detected','Working hours check · 09:00-18:00 UTC+3','CRT eliminated · no windows.h imports','any.run · sandbox evasion confirmed','any.run · behavioral checks passed · 0 detections']},
-    {type:'INFO',   cls:'info',    msgs:['ClickArmor · 75 agents enrolled','Sample corpus · 55,241 lures indexed','5,003 ClickFix domains mapped','Elastic EDR 9.3 · block/prevent mode','Defender ASR rules · all enabled']},
+    {type:'SORTED', cls:'sorted',  msgs:['Phase 03 · Discovery complete','Phase 05 · DLL sideload success','Phase 08 · WMI persistence planted','POSHSPY filter: BfeOnServiceStartTypeChange','Phase 02 · C2 profile loaded','APT29 · Cozy Bear emulation complete','HAMMERTOSS · dead-drop resolver standby']},
+    {type:'EVASION',cls:'evasion', msgs:['Sleep mask · RC4 encrypt in-memory','Stack spoof · dfshim.dll gadget','MAC blocklist · VMware OUI detected','Working hours check · 09:00-18:00 UTC+3','CRT eliminated · no windows.h imports','any.run · sandbox evasion confirmed','any.run · behavioral checks passed · 0 detections','InstallUtil.exe · CS content inspection bypassed']},
+    {type:'INFO',   cls:'info',    msgs:['ClickArmor · 75 agents enrolled','Sample corpus · 55,241 lures indexed','5,003 ClickFix domains mapped','Elastic EDR 9.3 · block/prevent mode','Defender ASR rules · all enabled','Custom C2 · 3 channels operational']},
   ];
 
   const MAX_LINES = 9;
@@ -1477,17 +1527,14 @@ tickClock(); setInterval(tickClock, 1000);
       setTimeout(()=>old.remove(), 300);
     }
 
-    // pulse dot
     dot.style.boxShadow='0 0 0 4px rgba(40,100,70,.3)';
     setTimeout(()=>dot.style.boxShadow='none',400);
   }
 
   function tickTs(){ tsEl.textContent = nowUtc(); }
 
-  // stagger initial fill
   for(let i=0;i<6;i++) setTimeout(addLine, i*180);
 
-  // ongoing feed — random interval 2.5-5s
   function scheduleNext(){
     const delay = 2500 + Math.random()*2500;
     setTimeout(()=>{ addLine(); scheduleNext(); }, delay);
